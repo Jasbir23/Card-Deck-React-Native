@@ -1,5 +1,5 @@
 # CardDeck
-![HelixScrollView](https://raw.githubusercontent.com/Jasbir23/HelixScrollView-React-Native/master/src/assets/husna.gif) <br />
+![CardDeck](https://raw.githubusercontent.com/Jasbir23/Card-Deck-React-Native/master/src/assets/CardDeck.gif) <br />
 
 ## Card-Deck-React-Native(iOS + Android)
 ## Props
