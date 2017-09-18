@@ -17,10 +17,10 @@ export default class ScrollSwagger extends Component {
     super(props);
     this.state = {
       scrollY: 0,
-      ani: new Animated.Value(0),
       diff: 0,
       dataArray: undefined,
-      noOfItems: undefined
+      noOfItems: undefined,
+      ani: new Animated.Value(0)
     };
   }
   componentWillMount() {
@@ -38,8 +38,9 @@ export default class ScrollSwagger extends Component {
       onMoveShouldSetResponderCapture: () => true, //Tell iOS that we are allowing the movement
       onMoveShouldSetPanResponderCapture: () => true, // Same here, tell iOS that we allow dragging
       onPanResponderMove: (dx, dy) => {
+        // console.log(this.state.diff, this.state.noOfItems * 100);
         if (
-          this.state.diff > this.state.noOfItems * 100 &&
+          this.state.diff > this.state.noOfItems * 140 + 30 &&
           dy.dy - this.state.scrollY > 0
         ) {
           // console.log("OverScrolling");
@@ -48,13 +49,14 @@ export default class ScrollSwagger extends Component {
         } else {
           this.setState({
             scrollY: dy.dy,
-            diff: this.state.diff + (dy.dy - this.state.scrollY),
-            ani: new Animated.Value(
-              this.state.diff + (dy.dy - this.state.scrollY)
-            )
+            diff: this.state.diff + (dy.dy - this.state.scrollY)
+          });
+          const ani = this.state.ani;
+          ani.setValue(this.state.diff);
+          this.setState({
+            ani: ani
           });
         }
-        // console.log(this.state.diff, "diff");
       }, // Creates a function to handle the movement and set offsets
       onPanResponderRelease: (dx, dy) => {
         // console.log(dy);
@@ -66,30 +68,48 @@ export default class ScrollSwagger extends Component {
   }
   renderCards(index) {
     let scrollArray = [];
-    let max = this.state.noOfItems * 100;
-    scrollArray.push(max - 100 * index - 1);
-    scrollArray.push(max - 100 * index);
-    scrollArray.push(max - 100 * index + 100);
-    scrollArray.push(max - 100 * index + 101);
-    // console.log(index, scrollArray);
+    let max = this.state.noOfItems * 140;
+    scrollArray.push(max - 140 * index - 1);
+    scrollArray.push(max - 140 * index);
+    scrollArray.push(max - 140 * index + 400);
+    scrollArray.push(max - 140 * index + 401);
+    let top = 0;
+    let widFac = 1;
+    switch (index) {
+      case this.state.noOfItems - 1:
+        top = 150;
+        widFac = 1.1;
+        break;
+      case this.state.noOfItems - 2:
+        top = 100;
+        widFac = 1.066;
+        break;
+      case this.state.noOfItems - 3:
+        top = 50;
+        widFac = 1.033;
+        break;
+    }
     let movFactor = this.state.ani.interpolate({
       inputRange: scrollArray,
-      outputRange: [0, 0, 200, 200]
+      outputRange: [0, 0, 800, 800]
     });
     let scaleFactor = this.state.ani.interpolate({
       inputRange: scrollArray,
-      outputRange: [1, 1, 1.05, 1.05]
+      outputRange: [1, 1, 1.3, 1.3]
     });
     return (
       <Animated.View
         key={index}
         {...this._panResponder.panHandlers}
         style={{
-          height: 400,
-          top: index * (height / (this.state.noOfItems * 5)),
-          width: width - (this.state.noOfItems - index) * 10,
+          top: top,
+          width: width - 30,
           position: "absolute",
-          transform: [{ translateY: movFactor }, { scale: scaleFactor }]
+          transform: [
+            { translateY: movFactor },
+            { scale: scaleFactor },
+            { scaleX: widFac }
+          ]
         }}
       >
         {this.props.renderCard(index)}
@@ -109,7 +129,7 @@ export default class ScrollSwagger extends Component {
             width: width,
             alignItems: "center",
             justifyContent: "flex-start",
-            padding: 80
+            top: 70
           },
           this.props.style ? this.props.style : null
         ]}
