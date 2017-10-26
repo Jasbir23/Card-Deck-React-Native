@@ -71,8 +71,8 @@ export default class ScrollSwagger extends Component {
     let max = this.state.noOfItems * 120;
     scrollArray.push(max - 120 * index - 1);
     scrollArray.push(max - 120 * index);
-    scrollArray.push(max - 120 * index + 400);
-    scrollArray.push(max - 120 * index + 401);
+    scrollArray.push(max - 120 * index + 200);
+    scrollArray.push(max - 120 * index + 201);
     let top = 0;
     let widFac = 1;
     switch (index) {
@@ -88,6 +88,25 @@ export default class ScrollSwagger extends Component {
         top = 50;
         widFac = 1.02;
         break;
+      case 0:
+        top = 10;
+        widFac = 0.98;
+        break;
+      case 1:
+        top = 20;
+        widFac = 1;
+        break;
+      case 2:
+        top = 30;
+        widFac = 1.01;
+        break;
+      case 3:
+        top = 40;
+        widFac = 1.015;
+        break;
+      default:
+        top = 50;
+        widFac = 1.02;
     }
     let movFactor = this.state.ani.interpolate({
       inputRange: scrollArray,

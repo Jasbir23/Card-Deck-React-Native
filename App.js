@@ -32,15 +32,14 @@ export default class App extends React.Component {
           return (
             <TouchableOpacity
               style={{
-                height: 400,
+                height: 500,
                 width: width - 60,
                 alignSelf: "center"
               }}
             >
-
               <Image
                 style={{
-                  height: 400,
+                  height: 500,
                   width: width - 60,
                   position: "absolute",
                   top: 0
@@ -55,11 +54,11 @@ export default class App extends React.Component {
                   top: 0,
                   width: width - 60,
                   height: 60,
-                  backgroundColor: "black",
                   justifyContent: "center",
                   alignItems: "center",
                   borderWidth: 0.5,
-                  borderColor: "yellow"
+                  borderColor: "blue",
+                  backgroundColor: "black"
                 }}
               >
                 <Text
