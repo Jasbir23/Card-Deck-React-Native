@@ -35,8 +35,12 @@ export default class ScrollSwagger extends Component {
       dataArray: arr
     });
     this._panResponder = PanResponder.create({
-      onMoveShouldSetResponderCapture: () => true, //Tell iOS that we are allowing the movement
-      onMoveShouldSetPanResponderCapture: () => true, // Same here, tell iOS that we allow dragging
+      onStartShouldSetPanResponder: () => false,
+      onMoveShouldSetPanResponder: (e, gestureState) => {
+        const { dx, dy } = gestureState;
+
+        return Math.abs(dx) > 1 || Math.abs(dy) > 1;
+      },
       onPanResponderMove: (dx, dy) => {
         // console.log(this.state.diff, this.state.noOfItems * 100);
         if (
@@ -118,8 +122,8 @@ export default class ScrollSwagger extends Component {
     });
     return (
       <Animated.View
-        key={index}
         {...this._panResponder.panHandlers}
+        key={index}
         style={{
           top: top,
           width: width - 30,

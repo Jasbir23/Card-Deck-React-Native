@@ -16,10 +16,10 @@ export default class App extends React.Component {
     this.state = {
       itemCount: 15,
       images: [
-        "http://cdn.droidviews.com/wp-content/uploads/2016/09/iOS10_wall_droidviews_023.jpg",
-        "http://www.wallpaperawesome.com/wallpapers-awesome/wallpapers-iphone-7-full-hd-1080-1920-awesome/wallpaper-iphone-7-kites-1080-1920-full-hd-389.jpg",
-        "http://cdn.droidviews.com/wp-content/uploads/2016/09/iOS10_wall_droidviews_002.jpg",
-        "https://i.pinimg.com/736x/0c/56/e6/0c56e65be513a9bcaae705a45c259cbb--screen-wallpaper-iphone--wallpaper-phone-wallpapers.jpg"
+        "https://assets.materialup.com/uploads/a1cd3599-9743-4ae9-b7fc-702a68ba38fc/attachment.jpg",
+        "http://i1-news.softpedia-static.com/images/news2/Inbox-by-Gmail-App-for-Android-Screenshot-Tour-463990-3.jpg",
+        "https://cdn.guidingtech.com/media/assets/WordPress-Import/2016/12/Screenshot_20161222-113306.jpg",
+        "https://cdn.guidingtech.com/media/assets/WordPress-Import/2016/12/Screenshot_20161222-145225.png"
       ]
     };
   }
@@ -28,9 +28,10 @@ export default class App extends React.Component {
       <CardDeck
         itemCount={this.state.itemCount}
         renderCard={index => {
-          var pointer = index % 3;
+          var pointer = index % 4;
           return (
             <TouchableOpacity
+              onPress={() => console.log("Clicked at index " + index)}
               style={{
                 height: 500,
                 width: width - 60,
@@ -48,25 +49,6 @@ export default class App extends React.Component {
                   uri: this.state.images[pointer]
                 }}
               />
-              <View
-                style={{
-                  position: "absolute",
-                  top: 0,
-                  width: width - 60,
-                  height: 60,
-                  justifyContent: "center",
-                  alignItems: "center",
-                  borderWidth: 0.5,
-                  borderColor: "blue",
-                  backgroundColor: "black"
-                }}
-              >
-                <Text
-                  style={{ fontSize: 20, fontWeight: "bold", color: "white" }}
-                >
-                  Header
-                </Text>
-              </View>
             </TouchableOpacity>
           );
         }}
