@@ -16,10 +16,10 @@ export default class App extends React.Component {
     this.state = {
       itemCount: 15,
       images: [
-        "https://assets.materialup.com/uploads/a1cd3599-9743-4ae9-b7fc-702a68ba38fc/attachment.jpg",
-        "http://i1-news.softpedia-static.com/images/news2/Inbox-by-Gmail-App-for-Android-Screenshot-Tour-463990-3.jpg",
-        "https://cdn.guidingtech.com/media/assets/WordPress-Import/2016/12/Screenshot_20161222-113306.jpg",
-        "https://cdn.guidingtech.com/media/assets/WordPress-Import/2016/12/Screenshot_20161222-145225.png"
+        "http://i1-news.softpedia-static.com/images/fitted/620x/screenshots-of-first-android-app-ported-to-windows-10-mobile-leaked-488772-3.jpg",
+        "http://www.technologytell.com/gadgets/files/2012/07/rdio-for-android-screenshot-04.jpeg",
+        "http://www.christianpeeters.com/wp-content/uploads/2012/08/gridviewtutorial1.png",
+        "https://developer.xamarin.com/guides/android/deployment,_testing,_and_metrics/publishing_an_application/Images/google_play_app.png"
       ]
     };
   }

@@ -152,7 +152,8 @@ export default class ScrollSwagger extends Component {
             width: width,
             alignItems: "center",
             justifyContent: "flex-start",
-            top: 70
+            paddingTop: 70,
+            backgroundColor: "black"
           },
           this.props.style ? this.props.style : null
         ]}
